@@ -8,7 +8,8 @@ pipeline {
             
             steps {
                 script{
-                currentBuild.displayName = "###${env.BUILD_NUMBER}###"
+                    currentBuild.displayName = "###${env.BUILD_NUMBER}###"
+                    gitChangelog from: [type: 'COMMIT', value: '${GIT_PREVIOUS_COMMIT}'], returnType: 'STRING', to: [type: 'COMMIT', value: '${GIT_COMMIT}']
                 }
 
                 echo 'Building..'
