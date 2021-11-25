@@ -7,7 +7,7 @@ pipeline {
                 echo 'Building..'
                 echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> branch: ${env.branch}"
-                echo "=============================> new2"
+                echo "=============================> new3"
             }
         }
         stage('Test') {
