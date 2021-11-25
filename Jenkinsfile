@@ -7,14 +7,13 @@ pipeline {
             
             
             steps {
-                script {
-                            gitChangelog from: [type: 'COMMIT', value: '${env.GIT_PREVIOUS_COMMIT}'], returnType: 'STRING', to: [type: 'COMMIT', value: '${env.GIT_COMMIT}']
-                            
-                }
+
                 echo 'Building..'
                 echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> branch: ${env.branch}"
                 echo "=============================> 2 commit after merge"
+                echo "=============================> GIT_PREVIOUS_COMMIT: ${env.GIT_PREVIOUS_COMMIT}"
+                echo "=============================> GIT_COMMIT: ${env.GIT_COMMIT}"
 
             }
         }
