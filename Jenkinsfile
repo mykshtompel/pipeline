@@ -7,7 +7,7 @@ pipeline {
                 echo 'Building..'
                 echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> branch: ${env.branch}"
-                echo "=============================> new4"
+                echo "=============================> 1 commit after merge"
 
             }
         }
