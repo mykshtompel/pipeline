@@ -3,7 +3,14 @@ pipeline {
 
     stages {
         stage('Build') {
+            
+            
+            
             steps {
+                script {
+                            gitChangelog from: [type: 'COMMIT', value: '${GIT_PREVIOUS_COMMIT}'], returnType: 'STRING', to: [type: 'COMMIT', value: '${GIT_COMMIT}']
+                            
+                }
                 echo 'Building..'
                 echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> branch: ${env.branch}"
