@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                echo "=============================> git_com: ${env.image_tag}"
+                echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> git_com: ${env.branch}"
             }
         }
