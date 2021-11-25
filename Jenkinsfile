@@ -7,6 +7,9 @@ pipeline {
             
             
             steps {
+                script{
+                currentBuild.displayName = "###${env.BUILD_NUMBER}###"
+                }
 
                 echo 'Building..'
                 echo "=============================> image_tag: ${env.image_tag}"
