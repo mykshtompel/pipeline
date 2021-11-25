@@ -8,7 +8,7 @@ pipeline {
             
             steps {
                 script {
-                            gitChangelog from: [type: 'COMMIT', value: '${GIT_PREVIOUS_COMMIT}'], returnType: 'STRING', to: [type: 'COMMIT', value: '${GIT_COMMIT}']
+                            gitChangelog from: [type: 'COMMIT', value: '${env.GIT_PREVIOUS_COMMIT}'], returnType: 'STRING', to: [type: 'COMMIT', value: '${env.GIT_COMMIT}']
                             
                 }
                 echo 'Building..'
