@@ -5,6 +5,7 @@ pipeline {
         git_com = sh(returnStdout: true, script: 'git rev-parse --short=12 HEAD').trim()
         git_previous_tag = sh(returnStdout: true, script: "git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`").trim()
         git_tag = sh(returnStdout: true, script: "git describe --abbrev=0 --tags `git rev-list --tags --skip=0 --max-count=1`").trim()
+        git log = sh(returnStdout: true, script: "git log --pretty=oneline ^${git_previous_tag} ${git_tag}").trim()
         
             
             
@@ -26,6 +27,8 @@ pipeline {
                 echo "=============================> git_com: ${env.git_com}"
                 echo "=============================> git_previous_tag: ${env.git_previous_tag}"
                 echo "=============================> git_tag: ${env.git_tag}"
+                echo "=============================> git log: ${env.git log}"
+                
                 echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> branch: ${env.branch}"
                 echo "=============================> 1 commit"
