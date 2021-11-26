@@ -7,6 +7,8 @@ pipeline {
         git_tag = sh(returnStdout: true, script: "git describe --abbrev=0 --tags `git rev-list --tags --skip=0 --max-count=1`").trim()
         git_log = sh(returnStdout: true, script: "git log --pretty=oneline ^${git_previous_tag} ${git_tag}").trim()
         git_number_of_commits = sh(returnStdout: true, script: "git rev-list --count ^${git_previous_tag} ${git_tag}").trim()
+        git_log_head = sh(returnStdout: true, script: "git log --pretty=oneline HEAD...${git_tag}").trim()
+        git_number_of_commits_head = sh(returnStdout: true, script: "git rev-list --count HEAD...${git_tag}").trim()
         
             
             
@@ -20,7 +22,7 @@ pipeline {
             
             steps {
                 script {
-                            currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}"
+                            currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}--#${git_number_of_commits_head}"
                             
                 }
                 
@@ -28,8 +30,11 @@ pipeline {
                 echo "=============================> git_com: ${env.git_com}"
                 echo "=============================> git_previous_tag: ${env.git_previous_tag}"
                 echo "=============================> git_tag: ${env.git_tag}"
-                echo "=============================> git log: ${env.git_log}"
+                echo "=============================> git_log: ${env.git_log}"
                 echo "=============================> git_number_of_commits: ${env.git_number_of_commits}"
+                echo "=============================> git_log_head: ${env.git_log_head}"
+                echo "=============================> git_number_of_commits_head: ${env.git_number_of_commits_head}"
+                
                 
                 echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> branch: ${env.branch}"
