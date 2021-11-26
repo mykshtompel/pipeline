@@ -33,7 +33,7 @@ pipeline {
                 
                 echo "=============================> image_tag: ${env.image_tag}"
                 echo "=============================> branch: ${env.branch}"
-                echo "=============================> 6 commit"
+                echo "=============================> 7 commit"
                 
                 echo "=============================> GIT_PREVIOUS_COMMIT: ${env.GIT_PREVIOUS_COMMIT}"
                 echo "=============================> GIT_COMMIT: ${env.GIT_COMMIT}"
