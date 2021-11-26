@@ -17,7 +17,7 @@ pipeline {
             
             steps {
                 script {
-                            currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}--#${git_number_of_commits_head}"
+                            currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}"
                 }
                 
                 echo 'Building..'
