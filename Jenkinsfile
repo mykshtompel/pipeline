@@ -15,6 +15,8 @@ pipeline {
                 echo "=============================> GIT_PREVIOUS_COMMIT: ${env.GIT_PREVIOUS_COMMIT}"
                 echo "=============================> GIT_COMMIT: ${env.GIT_COMMIT}"
                 echo "=============================> GIT_BRANCH: ${env.GIT_BRANCH}"
+                echo "=============================> TAG_NAME: ${env.TAG_NAME}"
+                
                 
 
             }
