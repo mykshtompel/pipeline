@@ -7,8 +7,8 @@ pipeline {
         git_tag = sh(returnStdout: true, script: "git describe --abbrev=0 --tags `git rev-list --tags --skip=0 --max-count=1`").trim()
         git_log = sh(returnStdout: true, script: "git log --pretty=oneline ^${git_previous_tag} ${git_tag}").trim()
         git_number_of_commits = sh(returnStdout: true, script: "git rev-list --count ^${git_previous_tag} ${git_tag}").trim()
-        git_log_head = sh(returnStdout: true, script: "git log --pretty=oneline HEAD...${git_tag}").trim()
-        git_number_of_commits_head = sh(returnStdout: true, script: "git rev-list --count HEAD...${git_tag}").trim()
+        git_log_head = sh(returnStdout: true, script: "git log --pretty=oneline ${git_tag}...HEAD").trim()
+        git_number_of_commits_head = sh(returnStdout: true, script: "git rev-list --count ${git_tag}...HEAD").trim()
         
             
             
