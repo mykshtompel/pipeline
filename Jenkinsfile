@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                             currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}"
-                            change_log = getChangeString()
+                            
                 }
                 
                 echo 'Building..'
