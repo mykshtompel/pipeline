@@ -74,7 +74,7 @@ def getChangeString() {
  }
 
  if (!changeString) {
- changeString = " - No new changes"
+ changeString = " - No new changes!!!"
  }
  return changeString
 }
