@@ -20,7 +20,7 @@ pipeline {
                             currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}"
                 }
                 
-                lastChanges since: format:'SIDE',matching: 'LINE',specificRevision: 'LAST_TAG'
+                lastChanges format:'SIDE',matching: 'LINE',specificRevision: 'LAST_TAG'
                 echo 'Building..'
                 echo "=============================> git_com: ${env.git_com}"
                 echo "=============================> git_previous_tag: ${env.git_previous_tag}"
