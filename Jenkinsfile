@@ -22,7 +22,7 @@ pipeline {
                     change_log = getChangeString()
                    
                 }
-                gitChangelog from: [type: 'REF', value: '^5.0'], returnType: 'CONTEXT', to: [type: 'REF', value: '6.0']
+                gitChangelog from: [type: 'REF', value: '5.0'], returnType: 'CONTEXT', to: [type: 'REF', value: '6.0']
                 
                 checkout changelog: true, scm: [$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '44c2f71b-79a4-45c8-9b68-42e1e4d5770f', url: 'https://github.com/mykshtompel/pipeline.git']]]
                 lastChanges format:'SIDE',matching: 'LINE',specificRevision: "${env.rev}"
