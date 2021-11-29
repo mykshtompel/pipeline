@@ -33,8 +33,8 @@ pipeline {
                 lastChanges format:'SIDE',matching: 'LINE',specificRevision: "${env.rev}"
                 echo 'Building...'
                 echo "=============================> git_com: ${env.git_com}"
-                echo "=============================> git_previous_tag: ${env.git_previous_tag}"
-                echo "=============================> git_tag: ${env.git_tag}"
+                echo "=============================> git_previous_tag: ${env.git_previous_tag} and commit ${git_com_previous_tag}"
+                echo "=============================> git_tag: ${env.git_tag} and commit ${git_com_tag}"
                 echo "=============================> git_log: ${env.git_log}"
                 echo "=============================> git_number_of_commits: ${env.git_number_of_commits}"
                 
