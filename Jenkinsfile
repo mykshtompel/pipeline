@@ -19,7 +19,8 @@ pipeline {
                 script {
                             currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}"
                 }
-                
+                git 'https://github.com/mykshtompel/pipeline.git'
+                lastChanges since: 'LAST_SUCCESSFUL_BUILD', format:'SIDE',matching: 'LINE'
                 echo 'Building..'
                 echo "=============================> git_com: ${env.git_com}"
                 echo "=============================> git_previous_tag: ${env.git_previous_tag}"
