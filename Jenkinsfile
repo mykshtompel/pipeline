@@ -21,7 +21,7 @@ pipeline {
                     currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}"
                     change_log = getChangeString()
                     checkout([$class: 'GitSCM',
-                               branches: [[name: '*/refs/tags/4.4']],
+                               branches: [[name: '*/refs/tags/5.0']],
                                userRemoteConfigs: [[credentialsId: '44c2f71b-79a4-45c8-9b68-42e1e4d5770f', url: 'https://github.com/mykshtompel/pipeline.git']]
                                changelog: false,
                                poll: false
