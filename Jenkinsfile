@@ -3,8 +3,13 @@ pipeline {
 
     environment {
         git_com = sh(returnStdout: true, script: 'git rev-parse --short=12 HEAD').trim()
+        
         git_previous_tag = sh(returnStdout: true, script: "git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`").trim()
+        git_com_previous_tag = sh(returnStdout: true, script: 'git rev-parse --short=12 ${git_previous_tag}').trim()
+        
         git_tag = sh(returnStdout: true, script: "git describe --abbrev=0 --tags `git rev-list --tags --skip=0 --max-count=1`").trim()
+        git_com_tag = sh(returnStdout: true, script: 'git rev-parse --short=12 ${git_tag}').trim()
+        
         git_log = sh(returnStdout: true, script: "git log --pretty=oneline ^${git_previous_tag} ${git_tag}").trim()
         git_number_of_commits = sh(returnStdout: true, script: "git rev-list --count ^${git_previous_tag} ${git_tag}").trim()
         
