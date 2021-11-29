@@ -24,8 +24,7 @@ pipeline {
                                branches: [[name: '*/main']],
                                userRemoteConfigs: [[credentialsId: '44c2f71b-79a4-45c8-9b68-42e1e4d5770f', url: 'https://github.com/mykshtompel/pipeline.git']]
                                changelog: false,
-                               poll: false
-                    ])
+                               poll: false])
                     
                 }
                 
