@@ -21,7 +21,7 @@ pipeline {
                     change_log = getChangeString()
                 }
                 
-                lastChanges format:'SIDE',matching: 'LINE',specificRevision: '4.1'
+                lastChanges format:'SIDE',matching: 'LINE',specificRevision: '4.2'
                 echo 'Building..'
                 echo "=============================> git_com: ${env.git_com}"
                 echo "=============================> git_previous_tag: ${env.git_previous_tag}"
