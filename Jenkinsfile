@@ -20,7 +20,7 @@ pipeline {
                     currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}--${env.image_tag}--#${git_number_of_commits}"
                     change_log = getChangeString()
                     checkout changelog: false, scm: [$class: 'GitSCM', branches: [[name: '${branch}']], extensions: [], userRemoteConfigs: [[credentialsId: '44c2f71b-79a4-45c8-9b68-42e1e4d5770f', url: 'https://github.com/mykshtompel/pipeline.git']]]
-                    System.setProperty("com.cloudbees.workflow.rest.external.ChangeSetExt.resolveCommitAuthors","false");
+                    
                 }
                 
                 lastChanges format:'SIDE',matching: 'LINE',specificRevision: '4.2'
