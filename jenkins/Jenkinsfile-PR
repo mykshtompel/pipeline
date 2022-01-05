@@ -1,0 +1,86 @@
+pipeline {
+    agent none
+
+    stages {
+
+        stage('Prepare environment') {
+            agent {
+                node {
+                    label 'master'
+                }
+            }
+
+            environment {
+                git_com = sh(returnStdout: true, script: 'git rev-parse --short=12 HEAD').trim()
+            }
+
+            stages {
+                stage('Build PR') {
+                    when {
+                        branch 'PR-*'
+                    }
+                    steps {
+                        script {
+                            currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.git_com}"
+                        }
+                        sh 'ls -la'
+                        echo "=============================> git_com: ${env.git_com}"
+                        echo "=============================> BRANCH_NAME: ${env.GIT_BRANCH}"
+
+                    }
+                }
+                stage('Build Tag') {
+                    when {
+                        tag ''
+                    }
+                    steps {
+                        script {
+                            env.TAG_NAME=env.TAG_NAME.replace("/","_")
+                            currentBuild.displayName = "#${env.BUILD_NUMBER}  rn-portal:${env.TAG_NAME}"
+                        }
+                        sh 'ls -la'
+                        echo "=============================> git_com: ${env.git_com}"
+                        echo "=============================> TAG_NAME: ${env.TAG_NAME}"
+
+                    }
+                }
+                stage('Run Test') {
+                    steps {
+                        sh 'echo "0" > jenkins/exit_code'
+                        script {
+                            env.exit_code = sh(returnStdout: true, script: 'cat jenkins/exit_code').trim()
+                        }
+                        echo "=============================> exit_code:${env.exit_code}"
+                    }
+                }
+                stage('Post Test result') {
+                    steps {
+                        
+                        echo "Posting test results..."
+                        script {
+                            if ("${env.exit_code}" != "0") {
+                                currentBuild.result = "UNSTABLE"
+                                
+                                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                                    sh "exit 1"
+                                }
+                            }
+                        }
+
+                    }
+                }
+                stage('Push image') {
+                    when {
+                        tag ''
+                        expression { env.exit_code == "0" }                        
+                    }
+                    steps {
+                        
+                        echo "Pushing image to docker registry"
+                        
+                    }
+                }
+            }
+        }
+    }
+}
